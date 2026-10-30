@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Retro OS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Desktop icons. Double-click opens the window in data-target -->
+  <main class="desktop">
+    <div class="icon" data-target="win-computer">
+      <img src="assets/images/my-computer.png" alt="My Computer">
+      <span>My Computer</span>
+    </div>
+
+    <div class="icon" data-target="win-bin">
+      <img src="assets/images/recycle-bin.png" alt="Recycle Bin">
+      <span>Bin</span>
+    </div>
+
+    <div class="icon" data-target="win-calendar">
+      <img src="assets/images/calendar.png" alt="Calendar">
+      <span>Calendar</span>
+    </div>
+
+    <div class="icon" data-target="win-calculator">
+      <img src="assets/images/calculator.png" alt="Calculator">
+      <span>Calculator</span>
+    </div>
+  </main>
+
+  <!-- My Computer -->
+  <section class="window" id="win-computer" style="left: 120px; top: 60px; width: 540px; height: 340px;">
+    <div class="titlebar">
+      <span class="title"><img src="assets/images/my-computer.png" alt="">My Computer</span>
+      <div class="controls">
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
+        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+    <div class="toolbar">
+      <span>Address</span>
+      <input class="field address" value="My Computer > C:" readonly>
+      <input class="field search" id="search" placeholder="Search...">
+    </div>
+    <div class="panel computer-body">
+      <aside class="sidebar">
+        <h4>System Tasks</h4>
+        <p>View system info</p>
+        <p>Add or remove programs</p>
+        <h4>Other Places</h4>
+        <p>Control Panel</p>
+        <p>My Documents</p>
+      </aside>
+      <div class="drives">
+        <div class="drive" id="drive-c">
+          <img src="assets/images/drive-c.png" alt="Drive C">
+          <span>Local Disk (C:)</span>
+          <div class="bar"><div class="fill" id="drive-fill"></div></div>
+          <span class="drive-info" id="drive-info"></span>
+        </div>
+        <p class="no-results hidden" id="no-results">No items match your search.</p>
+      </div>
+    </div>
+    <div class="statusbar">1 object(s)</div>
+  </section>
+
+  <!-- Recycle Bin -->
+  <section class="window" id="win-bin" style="left: 300px; top: 130px; width: 420px; height: 280px;">
+    <div class="titlebar">
+      <span class="title"><img src="assets/images/recycle-bin.png" alt="">Bin</span>
+      <div class="controls">
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
+        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+    <div class="toolbar">
+      <button class="btn" id="empty-bin">Empty Bin</button>
+    </div>
+    <div class="panel bin-body">
+      <div class="file" id="file-112">
+        <img src="assets/images/window-112.jpeg" alt="window-112">
+        <span>window-112.jpeg</span>
+      </div>
+    </div>
+    <div class="statusbar" id="bin-status">1 object(s)</div>
+  </section>
+
+  <!-- Picture viewer, opened by double-clicking the file in the Bin -->
+  <section class="window" id="win-image" style="left: 260px; top: 90px; width: 540px; height: 380px;">
+    <div class="titlebar">
+      <span class="title">window-112.jpeg - Picture Viewer</span>
+      <div class="controls">
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
+        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="panel image-body">
+      <img src="assets/images/window-112.jpeg" alt="window-112">
+    </div>
+  </section>
+
+  <!-- Calendar -->
+  <section class="window" id="win-calendar" style="left: 620px; top: 70px; width: 260px;">
+    <div class="titlebar">
+      <span class="title"><img src="assets/images/calendar.png" alt="">Calendar</span>
+      <div class="controls">
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
+        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="panel calendar-body">
+      <p class="cal-title" id="cal-title"></p>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="window" id="win-calculator" style="left: 640px; top: 340px; width: 220px;">
+    <div class="titlebar">
+      <span class="title"><img src="assets/images/calculator.png" alt="">Calculator</span>
+      <div class="controls">
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
+        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="calc-body">
+      <div class="calc-display" id="calc-display">0</div>
+      <div class="calc-keys">
+        <button class="key" data-key="7">7</button>
+        <button class="key" data-key="8">8</button>
+        <button class="key" data-key="9">9</button>
+        <button class="key" data-key="/">/</button>
+        <button class="key" data-key="4">4</button>
+        <button class="key" data-key="5">5</button>
+        <button class="key" data-key="6">6</button>
+        <button class="key" data-key="*">*</button>
+        <button class="key" data-key="1">1</button>
+        <button class="key" data-key="2">2</button>
+        <button class="key" data-key="3">3</button>
+        <button class="key" data-key="-">-</button>
+        <button class="key" data-key="0">0</button>
+        <button class="key" data-key=".">.</button>
+        <button class="key" data-key="=">=</button>
+        <button class="key" data-key="+">+</button>
+        <button class="key" data-key="C">C</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Taskbar -->
+  <footer class="taskbar">
+    <button class="start-button" aria-label="Start">
+      <img src="assets/images/start-button.png" alt="Start">
+    </button>
+    <div class="task-list">
+      <button class="task" data-target="win-computer">
+        <img src="assets/images/my-computer.png" alt="">My Computer
+      </button>
+      <button class="task" data-target="win-bin">
+        <img src="assets/images/recycle-bin.png" alt="">Bin
+      </button>
+      <button class="task" data-target="win-image">
+        <img src="assets/images/window-112.jpeg" alt="">window-112.jpeg
+      </button>
+      <button class="task" data-target="win-calendar">
+        <img src="assets/images/calendar.png" alt="">Calendar
+      </button>
+      <button class="task" data-target="win-calculator">
+        <img src="assets/images/calculator.png" alt="">Calculator
+      </button>
+    </div>
+    <div class="tray">
+      <span id="clock"></span>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

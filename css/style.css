@@ -1,0 +1,471 @@
+/* Colors */
+:root {
+  --teal: #008080;
+  --gray: #c0c0c0;
+  --dark-gray: #808080;
+  --white: #ffffff;
+  --black: #000000;
+  --navy: #000080;
+  --blue: #1084d0;
+}
+
+/* Retro arrow cursor for everything. "0 0" is the tip of the arrow. */
+* {
+  box-sizing: border-box;
+  cursor: url("../assets/cursors/arrow.png") 0 0, auto;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--teal);
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  color: var(--black);
+  user-select: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------- Desktop ---------- */
+.desktop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.icon {
+  width: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  color: var(--white);
+}
+
+.icon img {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+}
+
+.icon span {
+  padding: 1px 3px;
+}
+
+/* ---------- Window frame ---------- */
+.window {
+  position: absolute;
+  z-index: 10;
+  display: none;            /* hidden until opened by JavaScript */
+  flex-direction: column;
+  max-width: calc(100vw - 16px);
+  padding: 3px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: var(--white) var(--black) var(--black) var(--white);
+  box-shadow: 4px 4px 0 var(--black);
+  transform-origin: bottom center;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Minimize animation: shrink toward the taskbar */
+.window.minimized {
+  transform: translateY(70vh) scale(0.08);
+  opacity: 0;
+}
+
+/* Inactive windows have a gray title bar */
+.window.inactive .titlebar {
+  background: var(--dark-gray);
+}
+
+.titlebar {
+  height: 22px;
+  padding: 0 3px 0 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, var(--navy), var(--blue));
+  color: var(--white);
+  font-weight: bold;
+}
+
+.titlebar .title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.titlebar .title img {
+  width: 16px;
+  height: 16px;
+}
+
+.controls {
+  display: flex;
+  gap: 2px;
+}
+
+/* Minimize and close buttons */
+.ctrl {
+  width: 18px;
+  height: 16px;
+  padding: 0;
+  background: var(--gray);
+  border: 1px solid;
+  border-color: var(--white) var(--black) var(--black) var(--white);
+  font: bold 11px Tahoma, sans-serif;
+  color: var(--black);
+  line-height: 1;
+}
+
+.ctrl:active {
+  border-color: var(--black) var(--white) var(--white) var(--black);
+}
+
+/* Menu bar: items sit on one line, evenly spaced */
+.menubar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 24px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--dark-gray);
+}
+
+.menubar span {
+  line-height: 24px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--dark-gray);
+}
+
+/* Sunken white area for content */
+.panel {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: var(--white);
+  border: 1px solid;
+  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+}
+
+.field {
+  padding: 2px 4px;
+  font: 12px Tahoma, sans-serif;
+  border: 1px solid;
+  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+  background: var(--white);
+}
+
+.address {
+  flex: 1;
+}
+
+.search {
+  width: 130px;
+}
+
+/* Status bar: fixed height, text centered vertically */
+.statusbar {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-top: 1px solid var(--dark-gray);
+  font-size: 11px;
+}
+
+/* Raised button */
+.btn {
+  padding: 3px 12px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: var(--white) var(--black) var(--black) var(--white);
+  font: 12px Tahoma, sans-serif;
+}
+
+.btn:active {
+  border-color: var(--black) var(--white) var(--white) var(--black);
+}
+
+/* ---------- My Computer ---------- */
+.computer-body {
+  display: flex;
+}
+
+.sidebar {
+  width: 160px;
+  padding: 10px;
+  background: #e8e8e8;
+  border-right: 1px solid var(--dark-gray);
+}
+
+.sidebar h4 {
+  margin: 0 0 6px;
+  color: var(--navy);
+  font-size: 12px;
+}
+
+.sidebar p {
+  margin: 0 0 6px;
+  color: var(--navy);
+}
+
+.drives {
+  flex: 1;
+  padding: 14px;
+}
+
+/* Drive column: everything starts at the same left edge */
+.drive {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.drive img {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+}
+
+/* Storage bar: empty box with a filled part */
+.bar {
+  width: 100%;
+  height: 16px;
+  padding: 2px;
+  background: var(--white);
+  border: 1px solid;
+  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+}
+
+.fill {
+  height: 100%;
+  background: var(--navy);
+}
+
+.drive-info {
+  font-size: 11px;
+}
+
+.no-results {
+  margin: 0;
+  color: var(--navy);
+}
+
+/* ---------- Bin ---------- */
+.bin-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 14px;
+  padding: 14px;
+}
+
+.file {
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.file img {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border: 1px solid var(--dark-gray);
+}
+
+/* ---------- Picture viewer ---------- */
+.image-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.image-body img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- Calendar ---------- */
+.calendar-body {
+  padding: 8px;
+}
+
+.cal-title {
+  margin: 0 0 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  text-align: center;
+}
+
+.cal-grid .head {
+  font-weight: bold;
+  color: var(--navy);
+}
+
+.cal-grid .today {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ---------- Calculator ---------- */
+.calc-body {
+  flex: 1;
+  padding: 8px;
+  background: var(--gray);
+}
+
+.calc-display {
+  min-height: 32px;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  text-align: right;
+  font: 20px "Courier New", monospace;
+  background: var(--white);
+  border: 1px solid;
+  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+  overflow: hidden;
+}
+
+.calc-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.key {
+  height: 34px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: var(--white) var(--black) var(--black) var(--white);
+  font: bold 14px Tahoma, sans-serif;
+}
+
+.key:active {
+  border-color: var(--black) var(--white) var(--white) var(--black);
+}
+
+/* ---------- Taskbar ---------- */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  height: 40px;
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gray);
+  border-top: 1px solid var(--white);
+}
+
+.start-button {
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: none;
+  flex-shrink: 0;
+}
+
+.start-button img {
+  height: 100%;
+  display: block;
+}
+
+.start-button:active img {
+  filter: brightness(0.85);
+}
+
+.task-list {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  overflow: hidden;
+}
+
+/* Hidden until its window is open or minimized */
+.task {
+  display: none;
+  width: 160px;
+  height: 32px;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  background: var(--gray);
+  border: 2px solid;
+  border-color: var(--white) var(--black) var(--black) var(--white);
+  font: 12px Tahoma, sans-serif;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.task.show {
+  display: flex;
+}
+
+/* Pressed look for the front window */
+.task.pressed {
+  border-color: var(--black) var(--white) var(--white) var(--black);
+  background: repeating-conic-gradient(var(--white) 0 25%, var(--gray) 0 50%) 0 0 / 2px 2px;
+}
+
+.task img {
+  width: 16px;
+  height: 16px;
+}
+
+/* Sunken clock box with a dark inner line for depth */
+.tray {
+  height: 26px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  background: var(--gray);
+  color: var(--black);
+  font: 12px Tahoma, sans-serif;
+  white-space: nowrap;
+  border: 1px solid;
+  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+  box-shadow: inset 1px 1px 0 var(--black);
+}
