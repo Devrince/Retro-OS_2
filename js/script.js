@@ -1,22 +1,19 @@
-// time for taskbar
+// ---------- Clock ----------
 function updateClock() {
-    const now = new Date();
-    const time = now.toLocaleTimeString([],  {
-        hour: "2-digit",
-        minute: "2-digit",
-    });
-    document.getElementById("clock").textContent = time;
+  const now = new Date();
+  document.getElementById("clock").textContent = now.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
 }
-
 updateClock();
 setInterval(updateClock, 1000);
 
-//  Window system 
+// ---------- Window system ----------
 let topZ = 10;
 let activeWindow = null;
 const allWindows = document.querySelectorAll(".window");
 
-// window to the front 
 function focusWindow(win) {
   topZ++;
   win.style.zIndex = topZ;
@@ -26,9 +23,13 @@ function focusWindow(win) {
 }
 
 function openWindow(win) {
+  if (!win) {
+    console.warn("Window not found. Check its id in index.html.");
+    return;
+  }
   if (win.dataset.state === "minimized") {
     win.style.display = "flex";
-    void win.offsetWidth;
+    void win.offsetWidth; // apply the shrunken state first, so it animates back up
     win.classList.remove("minimized");
   } else {
     win.style.display = "flex";
@@ -55,16 +56,17 @@ function closeWindow(win) {
   updateTaskbar();
 }
 
-// taskbar button for every window
+// Shows a taskbar button for every open or minimized window
 function updateTaskbar() {
   document.querySelectorAll(".task").forEach((btn) => {
     const win = document.getElementById(btn.dataset.target);
+    if (!win) return;
     btn.classList.toggle("show", win.dataset.state !== "closed");
     btn.classList.toggle("pressed", win === activeWindow && win.dataset.state === "open");
   });
 }
 
-// Drag a window 
+// Drag a window by its title bar
 function makeDraggable(win) {
   const bar = win.querySelector(".titlebar");
   let dragging = false;
@@ -104,10 +106,11 @@ allWindows.forEach((win) => {
   win.querySelector(".ctrl-close").addEventListener("click", () => closeWindow(win));
 });
 
-// Taskbar buttons: restore a minimized window, minimize the front one, or bring a window forward
+// Taskbar buttons: restore, minimize the front window, or bring a window forward
 document.querySelectorAll(".task").forEach((btn) => {
   btn.addEventListener("click", () => {
     const win = document.getElementById(btn.dataset.target);
+    if (!win) return;
     if (win.dataset.state === "minimized") {
       openWindow(win);
     } else if (win === activeWindow && win.dataset.state === "open") {
@@ -170,10 +173,9 @@ function renderCalendar() {
     grid.appendChild(cell);
   });
 
-  const firstWeekday = new Date(year, month, 1).getDay(); // 0 = Sunday
+  const firstWeekday = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  // Empty cells before the 1st
   for (let i = 0; i < firstWeekday; i++) {
     grid.appendChild(document.createElement("div"));
   }
@@ -189,10 +191,10 @@ renderCalendar();
 
 // ---------- Calculator ----------
 const display = document.getElementById("calc-display");
-let current = "0";      // the number on screen
-let stored = null;      // the first number, waiting for the second
-let pendingOp = null;   // + - * /
-let startNew = false;   // true right after an operator or =
+let current = "0";
+let stored = null;
+let pendingOp = null;
+let startNew = false;
 
 function calculate(a, op, b) {
   if (op === "+") return a + b;
@@ -201,7 +203,6 @@ function calculate(a, op, b) {
   if (op === "/") return b === 0 ? 0 : a / b;
 }
 
-// One listener on the whole keypad (event delegation)
 document.querySelector(".calc-keys").addEventListener("click", (e) => {
   const key = e.target.dataset.key;
   if (!key) return;
@@ -226,7 +227,6 @@ document.querySelector(".calc-keys").addEventListener("click", (e) => {
     pendingOp = null;
     startNew = true;
   } else {
-    // + - * /
     if (pendingOp !== null && stored !== null && !startNew) {
       current = String(calculate(stored, pendingOp, Number(current)));
     }
@@ -238,7 +238,5 @@ document.querySelector(".calc-keys").addEventListener("click", (e) => {
   display.textContent = current;
 });
 
-// ---------- Start: everything is ready ----------
-allWindows.forEach((w) => {
-  if (w.dataset.state === "closed") updateTaskbar();
-});
+// Start: mark the taskbar correctly
+updateTaskbar();

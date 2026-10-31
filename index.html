@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Retro OS</title>
   <link rel="stylesheet" href="css/style.css">
+  <!-- PDF library. Must be here, before the other scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
@@ -30,20 +31,25 @@
       <img src="assets/images/calculator.png" alt="Calculator">
       <span>Calculator</span>
     </div>
-    
-    <div calss="icon" data-target="win-music">
-      <div class="emoji-icon">&#9835;</div>
+
+    <div class="icon" data-target="win-music">
+      <img src="assets/images/music.png" alt="Music">
       <span>Music</span>
     </div>
 
     <div class="icon" data-target="win-pdf">
-      <div class="emoji-icon">&#128196;</div>
+      <img src="assets/images/pdf.png" alt="PDF Reader">
       <span>PDF Reader</span>
     </div>
 
-    <div class=" icon" data-target="win-terminal">
-      <div class="emoji-icon">&#gt;_</div>
+    <div class="icon" data-target="win-terminal">
+      <img src="assets/images/terminal.png" alt="Terminal">
       <span>Terminal</span>
+    </div>
+
+    <div class="icon" data-target="win-dino">
+      <img src="assets/images/dino.png" alt="Dino Run">
+      <span>Dino Run</span>
     </div>
   </main>
 
@@ -169,11 +175,11 @@
   </section>
 
   <!-- Music player -->
-   <section class="window" id="win-music" style="left: 20px; top: 90px; width: 420px;">
-    <div class =titlebar>
-      <span class="title">Music</span>
+  <section class="window" id="win-music" style="left: 200px; top: 90px; width: 420px;">
+    <div class="titlebar">
+      <span class="title"><img src="assets/images/music.png" alt="">Music</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">_</button>
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
         <button class="ctrl ctrl-close" aria-label="Close">X</button>
       </div>
     </div>
@@ -183,61 +189,77 @@
         <div class="lcd-time" id="music-time">00:00 / 00:00</div>
       </div>
       <input type="range" class="progress" id="music-progress" min="0" max="100" value="0">
-      <div calss="music-controls">
+      <div class="music-controls">
         <button class="btn" id="music-prev">|&lt;</button>
-        <button calss="btn id=music-play">|&gt;</button>
+        <button class="btn" id="music-play">&gt;</button>
         <button class="btn" id="music-pause">||</button>
         <button class="btn" id="music-next">&gt;|</button>
         <label class="btn">Add
-           <input type="file" id="music-input" accept="audio/*" multiple class="hidden">
+          <input type="file" id="music-input" accept="audio/*" multiple class="hidden">
         </label>
         <input type="range" class="volume" id="music-volume" min="0" max="100" value="80" title="Volume">
-      </div> 
+      </div>
       <div class="playlist" id="music-list"></div>
     </div>
-   </section>
+  </section>
 
-   <!-- PDF reader -->
-    <section class="window" id="win-pdf" style="left: 240px; top: 60px; height: 460px;">
-      <div class="titlebar">
-        <span class="title">PDF Reader</span>
-          <div class="controls">
-            <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-            <button class="ctrl ctrl-close" aria-label="Close">X</button>
-          </div>
+  <!-- PDF reader -->
+  <section class="window" id="win-pdf" style="left: 240px; top: 60px; width: 620px; height: 460px;">
+    <div class="titlebar">
+      <span class="title"><img src="assets/images/pdf.png" alt="">PDF Reader</span>
+      <div class="controls">
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
+        <button class="ctrl ctrl-close" aria-label="Close">X</button>
       </div>
-      <div class="toolbar">
-        <button class="btn" id="pdf-prev">Prev</button>
-        <button class="btn" id="pdf-next">Next</button>
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="pdf-prev">Prev</button>
+      <button class="btn" id="pdf-next">Next</button>
+      <span id="pdf-info">Pick a file</span>
+    </div>
+    <div class="pdf-layout">
+      <aside class="pdf-files" id="pdf-files"></aside>
+      <div class="panel pdf-page">
+        <canvas id="pdf-canvas"></canvas>
       </div>
-      <div class="pdf-layout">
-        <aside class="pdf-files" id="pdf-files"></aside>
-        <div class="panel pdf-page">
-          <canvas id="pdf-canvas"></canvas>
-        </div>
-      </div>
-      <div class="statusbar" id="pdf-status">Ready</div>
-    </section>
+    </div>
+    <div class="statusbar" id="pdf-status">Ready</div>
+  </section>
 
-    <!-- Terminal -->
-     <section class="window" id="window-terminal" style="left: 180px; top: 120px; width: 560px; height: 340px;">
-      <div class="titlebar">
-        <span class="title">Terminal</span>
-        <div class="controls">
-          <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-          <button class="ctrl ctrl-close" aria-label="Close">X</button>
-        </div>
+  <!-- Terminal -->
+  <section class="window" id="win-terminal" style="left: 180px; top: 120px; width: 560px; height: 340px;">
+    <div class="titlebar">
+      <span class="title"><img src="assets/images/terminal.png" alt="">Terminal</span>
+      <div class="controls">
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
+        <button class="ctrl ctrl-close" aria-label="Close">X</button>
       </div>
-      <div class="term-body" id="term-body">
-        <div class="term-output" id="term-output"></div>
-        <div class="term-line">
-          <span class="term-promt">C:\&gt;</span>
-          <input class="term-input" id="term-input" autocomplete="off" spellcheck="false">
-        </div>
+    </div>
+    <div class="term-body" id="term-body">
+      <div class="term-output" id="term-output"></div>
+      <div class="term-line">
+        <span class="term-prompt">C:\&gt;</span>
+        <input class="term-input" id="term-input" autocomplete="off" spellcheck="false">
       </div>
-     </section>
+    </div>
+  </section>
 
-   <!-- Taskbar -->
+  <!-- Dino Run -->
+  <section class="window" id="win-dino" style="left: 160px; top: 200px; width: 500px;">
+    <div class="titlebar">
+      <span class="title"><img src="assets/images/dino.png" alt="">Dino Run</span>
+      <div class="controls">
+        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
+        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="panel dino-body">
+      <canvas id="dino-canvas" width="600" height="180"></canvas>
+    </div>
+    <div class="statusbar">Space or click to jump</div>
+  </section>
+
+  <!-- Taskbar -->
   <footer class="taskbar">
     <button class="start-button" aria-label="Start">
       <img src="assets/images/start-button.png" alt="Start">
@@ -258,18 +280,29 @@
       <button class="task" data-target="win-calculator">
         <img src="assets/images/calculator.png" alt="">Calculator
       </button>
-      <button class="task" data-target="win-music">Music</button>
-      <button class="task" data-target="win-pdf">PDF Reader</button>
-      <button class="task" data-target="win-terminal">Terminal</button>
+      <button class="task" data-target="win-music">
+        <img src="assets/images/music.png" alt="">Music
+      </button>
+      <button class="task" data-target="win-pdf">
+        <img src="assets/images/pdf.png" alt="">PDF Reader
+      </button>
+      <button class="task" data-target="win-terminal">
+        <img src="assets/images/terminal.png" alt="">Terminal
+      </button>
+      <button class="task" data-target="win-dino">
+        <img src="assets/images/dino.png" alt="">Dino Run
+      </button>
     </div>
     <div class="tray">
       <span id="clock"></span>
     </div>
   </footer>
 
+  <!-- Scripts: script.js must load first, because the others use its functions -->
   <script src="js/script.js"></script>
   <script src="js/music.js"></script>
   <script src="js/pdf.js"></script>
   <script src="js/terminal.js"></script>
+  <script src="js/dino.js"></script>
 </body>
 </html>

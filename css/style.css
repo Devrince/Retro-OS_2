@@ -1,4 +1,4 @@
-/* Colors */
+/* ---------- Colors ---------- */
 :root {
   --teal: #008080;
   --gray: #c0c0c0;
@@ -9,7 +9,7 @@
   --blue: #1084d0;
 }
 
-/* Retro arrow cursor for everything. "0 0" is the tip of the arrow. */
+/* Retro arrow cursor. "0 0" is the tip of the arrow. */
 * {
   box-sizing: border-box;
   cursor: url("../assets/cursors/arrow.png") 0 0, auto;
@@ -45,9 +45,9 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  align-content: flex-start;
   align-items: flex-start;
-  align-items: flex-start;
-  gap: 18px;
+  row-gap: 18px;
   column-gap: 12px;
 }
 
@@ -75,7 +75,7 @@ body {
 .window {
   position: absolute;
   z-index: 10;
-  display: none;            /* hidden until opened by JavaScript */
+  display: none;
   flex-direction: column;
   max-width: calc(100vw - 16px);
   padding: 3px;
@@ -125,7 +125,6 @@ body {
   gap: 2px;
 }
 
-/* Minimize and close buttons */
 .ctrl {
   width: 18px;
   height: 16px;
@@ -142,7 +141,6 @@ body {
   border-color: var(--black) var(--white) var(--white) var(--black);
 }
 
-/* Menu bar: items sit on one line, evenly spaced */
 .menubar {
   display: flex;
   align-items: center;
@@ -190,7 +188,6 @@ body {
   width: 130px;
 }
 
-/* Status bar: fixed height, text centered vertically */
 .statusbar {
   display: flex;
   align-items: center;
@@ -207,6 +204,7 @@ body {
   border: 2px solid;
   border-color: var(--white) var(--black) var(--black) var(--white);
   font: 12px Tahoma, sans-serif;
+  color: var(--black);
 }
 
 .btn:active {
@@ -241,7 +239,6 @@ body {
   padding: 14px;
 }
 
-/* Drive column: everything starts at the same left edge */
 .drive {
   width: 220px;
   display: flex;
@@ -256,7 +253,6 @@ body {
   image-rendering: pixelated;
 }
 
-/* Storage bar: empty box with a filled part */
 .bar {
   width: 100%;
   height: 16px;
@@ -378,10 +374,186 @@ body {
   border: 2px solid;
   border-color: var(--white) var(--black) var(--black) var(--white);
   font: bold 14px Tahoma, sans-serif;
+  color: var(--black);
 }
 
 .key:active {
   border-color: var(--black) var(--white) var(--white) var(--black);
+}
+
+/* ---------- Music player ---------- */
+.music-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.lcd {
+  padding: 8px 10px;
+  background: #1d3a24;
+  color: #9cf07c;
+  font: 13px "Courier New", monospace;
+  border: 2px solid;
+  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+}
+
+.lcd-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lcd-time {
+  margin-top: 4px;
+  text-align: right;
+}
+
+.progress {
+  width: 100%;
+  accent-color: var(--navy);
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.music-controls .btn {
+  min-width: 40px;
+  text-align: center;
+}
+
+.volume {
+  width: 90px;
+  margin-left: auto;
+  accent-color: var(--navy);
+}
+
+.playlist {
+  height: 120px;
+  overflow-y: auto;
+  background: var(--white);
+  border: 1px solid;
+  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+}
+
+.song {
+  padding: 3px 6px;
+  cursor: pointer;
+}
+
+.song:hover {
+  background: #e8e8e8;
+}
+
+.song.active {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ---------- PDF reader ---------- */
+.pdf-layout {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+}
+
+.pdf-files {
+  width: 150px;
+  padding: 6px;
+  overflow-y: auto;
+  background: #e8e8e8;
+  border: 1px solid;
+  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+}
+
+.pdf-file {
+  padding: 4px 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.pdf-file:hover {
+  background: #d4d0c8;
+}
+
+.pdf-file.active {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* Dark gray desk behind the white page */
+.pdf-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  background: var(--dark-gray);
+}
+
+#pdf-canvas {
+  max-width: 100%;
+  height: auto;
+  background: var(--white);
+  box-shadow: 3px 3px 0 var(--black);
+}
+
+/* ---------- Terminal ---------- */
+.term-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px;
+  background: #000000;
+  color: #33ff66;
+  font: 14px "Courier New", monospace;
+}
+
+.term-output {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.term-line {
+  display: flex;
+}
+
+.term-prompt {
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.term-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font: inherit;
+  caret-color: #33ff66;
+}
+
+/* ---------- Dino game ---------- */
+.dino-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: var(--white);
+}
+
+#dino-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--white);
 }
 
 /* ---------- Taskbar ---------- */
@@ -424,7 +596,6 @@ body {
   overflow: hidden;
 }
 
-/* Hidden until its window is open or minimized */
 .task {
   display: none;
   width: 130px;
@@ -436,7 +607,8 @@ body {
   background: var(--gray);
   border: 2px solid;
   border-color: var(--white) var(--black) var(--black) var(--white);
-  font: 12px Tahoma, sans-serif;
+  font: 12px Tahoma,sans-serif;
+  color: var(--black);
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
@@ -446,8 +618,7 @@ body {
   display: flex;
 }
 
-/* Pressed look for the front window */
-.task.pressed {
+.task.pressed{ 
   border-color: var(--black) var(--white) var(--white) var(--black);
   background: repeating-conic-gradient(var(--white) 0 25%, var(--gray) 0 50%) 0 0 / 2px 2px;
 }
@@ -457,202 +628,20 @@ body {
   height: 16px;
 }
 
-/* Sunken clock box with a dark inner line for depth */
 .tray {
   height: 26px;
   padding: 0 10px;
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  flex-shrink:0;
   background: var(--gray);
+  color: var(--gray);
   color: var(--black);
-  font: 12px Tahoma, sans-serif;
+  font: 12px tahoma, sans-serif;
   white-space: nowrap;
   border: 1px solid;
-  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+  border-color: var(--drak-gray) var(--white) var(--white) var(--dark-gray);
   box-shadow: inset 1px 1px 0 var(--black);
 }
 
-/* ---------- Temporary desktop icons (until we add pictures) ---------- */
-.emoji-icon {
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  color: var(--gray);
-  background: var(--gray);
-  border: 2px solid;
-  border-color: var(--white) var(--black) var(--balck) var(--white);
-}
 
-/*------- Music player --------*/
-.music-body {
- display: flex;
- flex-direction: column;
- gap: 10px;
- padding: 10px;
-}
-
-/* green LCD screen */
-.lcd {
-  padding: 8px 10px;
-  background: #1d3a24;
-  color: #9cf07c;
-  font: 13px "courier New" , monospace;
-  border: 2px solid;
-  border-color: var(--dark-gray) var(--white) var(--white) var(--dar-gray);
-}
-
-.lcd-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.lcd-time {
-  margin-top: 4px;
-  text-align: right;
-}
-
-.progress {
-  width: 100%;
-  accent-color: var(--navy)
-}
-
-.music-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.music-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.music-controls .btn {
-  min-width: 40px;
-  text-align: center;
-}
-
-.volume {
-  width: 90px;
-  margin-left: auto;
-  accent-color: var(--navy)
-}
-
-.playlist {
-  height: 120px;
-  overflow-y: auto;
-  background: var(--white);
-  border: 1px solid;
-  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
-}
-
-.song {
-  padding: 3px 6px;
-}
-
-.song:hover {
-  background: #e8e8e8;
-}
-
-.song.active {
-  background: var(--navy);
-  color: var(--white);
-}
-
-/* -------- PDF reader ---------*/
-.pdf-layout {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  gap: 6px;
-  padding: 6px;
-}
-
-.pdf-files {
-  width: 150px;
-  padding: 6px;
-  overflow-y: auto;
-  background: #e8e8e8;
-  border: 1px solid;
-  border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
-}
-
-.pdf-file {
-  padding: 4px 6p;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.pdf-file:hover {
-  background: #d4d0c8;
-}
-
-.pdf-file.active {
-  background: var(--navy);
-  color: var(--white);
-}
-
-.pdf-page {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 10px;
-  background: var(--dark-gray);
-}
-
-.pdf-canvas {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 10px;
-  background: var(--dark-gray);
-}
-
-#pdf-canvas {
-  max-width: 100%;
-  height: auto;
-  background: var(--white);
-  box-shadow: 3px 3px 0 var(--black);
-}
-
-/* --------- Terminal --------- */
-.term-body {
-flex: 1;
-min-height: 0;
-overflow-y: auto;
-padding: 8px;
-background: #000000;
-color: #33ff66;
-font: 14px "Courier New" , monospace;  
-}
-
-.term-output {
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.term-line {
-  display: flex;
-}
-
-.term-prompt {
-  margin-right: 6px;
-  white-space: nowrap;
-}
-
-.term-input {
-  flex: 1;
-  min-width: 0;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: inherit;
-  caret-color: #33ff66;
-}
