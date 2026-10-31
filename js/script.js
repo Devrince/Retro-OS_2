@@ -240,3 +240,4 @@ document.querySelector(".calc-keys").addEventListener("click", (e) => {
 
 // Start: mark the taskbar correctly
 updateTaskbar();
+
