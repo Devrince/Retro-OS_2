@@ -22,10 +22,18 @@ body {
 }
 
 body {
-  background: linear-gradient(#0000a8, #4a86e8);
+  background-color: var(--teal);
+  background-image: url("../assets/images/wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font: 12px Tahoma, sans-serif;
   color: var(--black);
   user-select: none;
+}
+
+.icon span {
+  text-shadow: 1px 1px 0 var(--black);
 }
 
 .hidden {
@@ -290,8 +298,14 @@ body {
   text-align: center;
 }
 
+.cal-grid div {
+  height: 24px;
+  line-height: 24px;
+}
+
 .head {
   font-weight: bold;
+  color: var(--navy);
 }
 
 .today {
@@ -299,60 +313,47 @@ body {
   color: var(--white);
 }
 
-/* Calculator: handheld style */
+/* Calculator */
 .calc-body {
-  flex: 1;
-  padding: 10px;
-  background: #2f2f2f;
+  padding: 8px;
+  background: var(--gray);
 }
 
 .calc-display {
-  height: 44px;
-  margin-bottom: 10px;
-  padding: 6px 10px;
+  height: 30px;
+  margin-bottom: 8px;
+  padding: 4px 8px;
   text-align: right;
-  font: 24px "Courier New", monospace;
-  color: #7cff7c;
-  background: #0b1a0b;
-  border: 2px solid #111111;
-  border-radius: 4px;
-  box-shadow: inset 0 0 6px #000000;
-  overflow: hidden;
+  font: 20px "Courier New", monospace;
+  background: var(--white);
+  border: 1px solid var(--dark);
 }
 
 .calc-keys {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
 }
 
 .key {
-  height: 36px;
-  background: #d9d9d9;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0 2px 0 #777777;
-  font: bold 15px Tahoma, sans-serif;
-  color: #222222;
+  height: 32px;
+  background: var(--gray);
+  border: 1px solid var(--dark);
+  font: 14px Tahoma, sans-serif;
 }
 
-.key:active {
-  transform: translateY(2px);
-  box-shadow: none;
-}
 
-/* Operators: orange */
 .key.op {
   background: #ffb347;
 }
 
-/* Equals: stronger orange */
+
 .key.eq {
   background: #ff7a3d;
   color: #ffffff;
 }
 
-/* Clear: red, spans two columns */
+
 .key.clear {
   grid-column: span 2;
   background: #e05555;
