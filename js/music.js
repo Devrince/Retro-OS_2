@@ -1,8 +1,7 @@
 // ---------- Music player ----------
-// Put your songs in assets/music/ with these exact names.
-// You can also add more songs with the Add button in the player.
 const songs = [
-  { title: "Song One", src: "assets/music/song-one.mp3" },
+  { title: "Until I found U", src: "assets/music/Until_I_Found_You.mp3" },
+  { title: "CO2", src: "assets/music/Co2.mp3" },
 ];
 
 const audio = new Audio();

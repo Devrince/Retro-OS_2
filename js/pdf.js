@@ -1,5 +1,4 @@
 // ---------- PDF reader ----------
-// Put your PDFs in assets/files/ with these exact names.
 const pdfFiles = [
   { name: "about-me.pdf", src: "assets/files/about-me.pdf" },
   { name: "my-thoughts.pdf", src: "assets/files/my-thoughts.pdf" },

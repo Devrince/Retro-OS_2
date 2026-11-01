@@ -3,9 +3,7 @@ const termOutput = document.getElementById("term-output");
 const termInput = document.getElementById("term-input");
 const termBody = document.getElementById("term-body");
 
-const OWNER_NAME = "your name"; // change this to your name
-
-// Words you can use with "open", and the window each one opens
+const OWNER_NAME = "Devrince"; 
 const appWindows = {
   music: "win-music",
   pdf: "win-pdf",
