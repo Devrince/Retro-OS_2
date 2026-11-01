@@ -15,7 +15,7 @@ const appWindows = {
   bin: "win-bin",
 };
 
-// Adds one line to the screen and scrolls to the bottom
+
 function printLine(text) {
   const line = document.createElement("div");
   line.textContent = text;
@@ -23,7 +23,7 @@ function printLine(text) {
   termBody.scrollTop = termBody.scrollHeight;
 }
 
-// Each command is a function. "args" holds the words typed after the command.
+
 const commands = {
   help() {
     printLine("help          show this list");
@@ -84,7 +84,7 @@ const commands = {
   },
 };
 
-// Splits what you typed into a command and its words, then runs it
+
 function runCommand(text) {
   const parts = text.trim().split(/\s+/);
   const name = parts[0].toLowerCase();
@@ -101,14 +101,13 @@ function runCommand(text) {
   }
 }
 
-// Press Enter to run the command
+
 termInput.addEventListener("keydown", (e) => {
   if (e.key !== "Enter") return;
   runCommand(termInput.value);
   termInput.value = "";
 });
 
-// Clicking the terminal puts the cursor back in the input line
 termBody.addEventListener("click", () => termInput.focus());
 
 // Start up

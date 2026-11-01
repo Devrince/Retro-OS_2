@@ -9,7 +9,7 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-// ---------- Window system ----------
+
 let topZ = 10;
 let activeWindow = null;
 const allWindows = document.querySelectorAll(".window");
@@ -29,7 +29,7 @@ function openWindow(win) {
   }
   if (win.dataset.state === "minimized") {
     win.style.display = "flex";
-    void win.offsetWidth; // apply the shrunken state first, so it animates back up
+    void win.offsetWidth; 
     win.classList.remove("minimized");
   } else {
     win.style.display = "flex";
@@ -56,7 +56,7 @@ function closeWindow(win) {
   updateTaskbar();
 }
 
-// Shows a taskbar button for every open or minimized window
+
 function updateTaskbar() {
   document.querySelectorAll(".task").forEach((btn) => {
     const win = document.getElementById(btn.dataset.target);
@@ -66,7 +66,7 @@ function updateTaskbar() {
   });
 }
 
-// Drag a window by its title bar
+
 function makeDraggable(win) {
   const bar = win.querySelector(".titlebar");
   let dragging = false;
@@ -95,7 +95,7 @@ function makeDraggable(win) {
   bar.addEventListener("pointercancel", stopDragging);
 }
 
-// Set up every window
+
 allWindows.forEach((win) => {
   win.dataset.state = "closed";
   makeDraggable(win);
@@ -106,7 +106,7 @@ allWindows.forEach((win) => {
   win.querySelector(".ctrl-close").addEventListener("click", () => closeWindow(win));
 });
 
-// Taskbar buttons: restore, minimize the front window, or bring a window forward
+
 document.querySelectorAll(".task").forEach((btn) => {
   btn.addEventListener("click", () => {
     const win = document.getElementById(btn.dataset.target);
@@ -121,14 +121,14 @@ document.querySelectorAll(".task").forEach((btn) => {
   });
 });
 
-// Desktop icons open their window on double-click
+
 document.querySelectorAll(".icon").forEach((icon) => {
   icon.addEventListener("dblclick", () => {
     openWindow(document.getElementById(icon.dataset.target));
   });
 });
 
-// ---------- My Computer: drive and search ----------
+
 const drive = { totalMB: 9, usedMB: 6 };
 document.getElementById("drive-fill").style.width = (drive.usedMB / drive.totalMB) * 100 + "%";
 document.getElementById("drive-info").textContent =
@@ -142,7 +142,7 @@ search.addEventListener("input", () => {
   document.getElementById("no-results").classList.toggle("hidden", matches);
 });
 
-// ---------- Bin ----------
+
 document.getElementById("empty-bin").addEventListener("click", () => {
   document.getElementById("bin-status").textContent = "Nice try. This file is staying.";
 });
@@ -151,7 +151,7 @@ document.getElementById("file-112").addEventListener("dblclick", () => {
   openWindow(document.getElementById("win-image"));
 });
 
-// ---------- Calendar ----------
+
 function renderCalendar() {
   const now = new Date();
   const year = now.getFullYear();
@@ -189,7 +189,7 @@ function renderCalendar() {
 }
 renderCalendar();
 
-// ---------- Calculator ----------
+
 const display = document.getElementById("calc-display");
 let current = "0";
 let stored = null;
@@ -238,6 +238,6 @@ document.querySelector(".calc-keys").addEventListener("click", (e) => {
   display.textContent = current;
 });
 
-// Start: mark the taskbar correctly
+
 updateTaskbar();
 

@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Retro OS</title>
+  <title>Retro OS</title>
   <link rel="stylesheet" href="css/style.css">
-  <!-- PDF library. Must be here, before the other scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
 
-  <!-- Desktop icons. Double-click opens the window in data-target -->
+  <!-- Desktop icons -->
   <main class="desktop">
     <div class="icon" data-target="win-computer">
       <img src="assets/images/my-computer.png" alt="My Computer">
@@ -18,7 +17,7 @@
     </div>
 
     <div class="icon" data-target="win-bin">
-      <img src="assets/images/recycle-bin.png" alt="Recycle Bin">
+      <img src="assets/images/recycle-bin.png" alt="Bin">
       <span>Bin</span>
     </div>
 
@@ -58,8 +57,8 @@
     <div class="titlebar">
       <span class="title"><img src="assets/images/my-computer.png" alt="">My Computer</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
@@ -95,8 +94,8 @@
     <div class="titlebar">
       <span class="title"><img src="assets/images/recycle-bin.png" alt="">Bin</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
@@ -112,13 +111,13 @@
     <div class="statusbar" id="bin-status">1 object(s)</div>
   </section>
 
-  <!-- Picture viewer, opened by double-clicking the file in the Bin -->
+  <!-- Picture viewer (opens from the Bin) -->
   <section class="window" id="win-image" style="left: 260px; top: 90px; width: 540px; height: 380px;">
     <div class="titlebar">
-      <span class="title">window-112.jpeg - Picture Viewer</span>
+      <span class="title">window-112.jpeg</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="panel image-body">
@@ -131,8 +130,8 @@
     <div class="titlebar">
       <span class="title"><img src="assets/images/calendar.png" alt="">Calendar</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="panel calendar-body">
@@ -141,13 +140,13 @@
     </div>
   </section>
 
-  <!-- Calculator -->
-  <section class="window" id="win-calculator" style="left: 640px; top: 340px; width: 220px;">
+   <!-- Calculator -->
+  <section class="window" id="win-calculator" style="left: 640px; top: 340px; width: 230px;">
     <div class="titlebar">
-      <span class="title"><img src="assets/images/calculator.png" alt="">Calculator</span>
+      <span class="title">Calculator</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="calc-body">
@@ -156,31 +155,31 @@
         <button class="key" data-key="7">7</button>
         <button class="key" data-key="8">8</button>
         <button class="key" data-key="9">9</button>
-        <button class="key" data-key="/">/</button>
+        <button class="key op" data-key="/">/</button>
         <button class="key" data-key="4">4</button>
         <button class="key" data-key="5">5</button>
         <button class="key" data-key="6">6</button>
-        <button class="key" data-key="*">*</button>
+        <button class="key op" data-key="*">*</button>
         <button class="key" data-key="1">1</button>
         <button class="key" data-key="2">2</button>
         <button class="key" data-key="3">3</button>
-        <button class="key" data-key="-">-</button>
+        <button class="key op" data-key="-">-</button>
         <button class="key" data-key="0">0</button>
         <button class="key" data-key=".">.</button>
-        <button class="key" data-key="=">=</button>
-        <button class="key" data-key="+">+</button>
-        <button class="key" data-key="C">C</button>
+        <button class="key eq" data-key="=">=</button>
+        <button class="key op" data-key="+">+</button>
+        <button class="key clear" data-key="C">C</button>
       </div>
     </div>
   </section>
 
-  <!-- Music player -->
+  <!-- Music -->
   <section class="window" id="win-music" style="left: 200px; top: 90px; width: 420px;">
     <div class="titlebar">
       <span class="title"><img src="assets/images/music.png" alt="">Music</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="panel music-body">
@@ -203,13 +202,13 @@
     </div>
   </section>
 
-  <!-- PDF reader -->
+  <!-- PDF Reader -->
   <section class="window" id="win-pdf" style="left: 240px; top: 60px; width: 620px; height: 460px;">
     <div class="titlebar">
       <span class="title"><img src="assets/images/pdf.png" alt="">PDF Reader</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="toolbar">
@@ -231,8 +230,8 @@
     <div class="titlebar">
       <span class="title"><img src="assets/images/terminal.png" alt="">Terminal</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="term-body" id="term-body">
@@ -249,8 +248,8 @@
     <div class="titlebar">
       <span class="title"><img src="assets/images/dino.png" alt="">Dino Run</span>
       <div class="controls">
-        <button class="ctrl ctrl-min" aria-label="Minimize">-</button>
-        <button class="ctrl ctrl-close" aria-label="Close">X</button>
+        <button class="ctrl ctrl-min">-</button>
+        <button class="ctrl ctrl-close">X</button>
       </div>
     </div>
     <div class="panel dino-body">
@@ -261,7 +260,7 @@
 
   <!-- Taskbar -->
   <footer class="taskbar">
-    <button class="start-button" aria-label="Start">
+    <button class="start-button">
       <img src="assets/images/start-button.png" alt="Start">
     </button>
     <div class="task-list">
@@ -298,7 +297,6 @@
     </div>
   </footer>
 
-  <!-- Scripts: script.js must load first, because the others use its functions -->
   <script src="js/script.js"></script>
   <script src="js/music.js"></script>
   <script src="js/pdf.js"></script>
